@@ -1,0 +1,4 @@
+column 1
+{
+	english: O, Usekh the Far-Strider coming from Heliopolis, I have not done Isefet
+}

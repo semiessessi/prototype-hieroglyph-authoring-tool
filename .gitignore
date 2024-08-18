@@ -1,0 +1,13 @@
+bin/
+obj/
+.vs/
+.idea/
+manifest*.json
+Build
+Workspace/.vs
+*.user
+Workspace/x64/
+Data/
+assets/js/contentScript.js
+assets/js/options.js
+.vscode/
