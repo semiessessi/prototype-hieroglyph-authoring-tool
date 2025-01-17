@@ -831,5 +831,11 @@ namespace PP1
             dropdown.Left = MousePosition.X;
             dropdown.Top = MousePosition.Y;
         }
+
+        private void generateTeXToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            TexGenerators dialog = new TexGenerators();
+            dialog.ShowDialog();
+        }
     }
 }

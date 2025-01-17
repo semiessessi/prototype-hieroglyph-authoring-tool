@@ -156,6 +156,8 @@ namespace PP1
             this.OpenProjectDialog = new System.Windows.Forms.OpenFileDialog();
             this.AddImageDialog = new System.Windows.Forms.OpenFileDialog();
             this.AddTextDialog = new System.Windows.Forms.OpenFileDialog();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.generateTeXToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.GlyphLibraryContextMenu.SuspendLayout();
             this.ImageNodeContextMenu.SuspendLayout();
             this.TextNodeContextMenu.SuspendLayout();
@@ -576,7 +578,9 @@ namespace PP1
             this.generateGlyphTemplatesToolStripMenuItem,
             this.generateGridTemplateToolStripMenuItem,
             this.toolStripMenuItem10,
-            this.dictionaryToolStripMenuItem});
+            this.dictionaryToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.generateTeXToolStripMenuItem});
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             this.toolsToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
             this.toolsToolStripMenuItem.Text = "&Tools";
@@ -1287,6 +1291,18 @@ namespace PP1
             // 
             this.AddTextDialog.Filter = "Text (*.text)|*.text|Plain text (*.txt)|*.txt|All Files (*.*)|*.*";
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(217, 6);
+            // 
+            // generateTeXToolStripMenuItem
+            // 
+            this.generateTeXToolStripMenuItem.Name = "generateTeXToolStripMenuItem";
+            this.generateTeXToolStripMenuItem.Size = new System.Drawing.Size(220, 22);
+            this.generateTeXToolStripMenuItem.Text = "Generate TeX...";
+            this.generateTeXToolStripMenuItem.Click += new System.EventHandler(this.generateTeXToolStripMenuItem_Click);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -1452,6 +1468,8 @@ namespace PP1
         private System.Windows.Forms.ToolStripButton PaletteButtonI;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem12;
         private System.Windows.Forms.ToolStripMenuItem hieroglyphPaletteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem generateTeXToolStripMenuItem;
     }
 }
 

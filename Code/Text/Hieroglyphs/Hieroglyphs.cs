@@ -103,6 +103,12 @@ namespace PP1
             { "S", "š" },
             { "T", "ṯ" },
             { "D", "ḏ" },
+            { "Y", "y" },
+            { "W", "w" },
+            { "N", "n" },
+            { "M", "m" },
+            { "G", "g" },
+            { "K", "k" },
         };
         private static readonly Dictionary<string, string> gardenerSignList = CreateGardinerToUnicodeMap();
         private static readonly Dictionary<string, string> gardinerSignFromMdC = new Dictionary<string, string>
@@ -132,8 +138,9 @@ namespace PP1
             { "S",          "N37" },
             { "q",          "N29" },
             { "k",          "V31" },
-            { "K",          "S56" },
+            { "K",          "S46" },
             { "g",          "W11" },
+            { "G",          "V33" },
             { "t",          "X1" },
             { "T",          "V13" },
             { "d",          "D46" },
