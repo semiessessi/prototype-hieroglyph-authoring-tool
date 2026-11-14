@@ -111,7 +111,7 @@ namespace PP1
             { "K", "k" },
         };
         private static readonly Dictionary<string, string> gardenerSignList = CreateGardinerToUnicodeMap();
-        private static readonly Dictionary<string, string> gardinerSignFromMdC = new Dictionary<string, string>
+        public static readonly Dictionary<string, string> gardinerSignFromMdC = new Dictionary<string, string>
         {
             { "A",          "G1" },
             { "i",          "M17" },
@@ -388,11 +388,12 @@ namespace PP1
             { "pzD", "N9" },
             { "wsxt", "O15" },
             { "kAr", "O18" },
-            { "zH", "O22" },
+            { "zH", "O21" },
+            { "Hb", "O22" },
             { "txn", "O25" },
             { "zxnt", "O30" },
             { "zb", "O35" },
-            { "qnbt", "O38A" },
+            { "qnbt", "O38" },
             { "Szp", "O42" },
             { "ipt", "O45" },
             { "nxn", "O47" },
@@ -498,14 +499,15 @@ namespace PP1
             { "idr", "V37" },
             { "wA", "V4" },
             { "snT", "V5" },
-            { "sS", "V6" },
+            { "Ss", "V6" },
+            { "Ss-mnxt", "S113" },
             { "iab", "W10" },
             { "nzt", "W11" },
             { "Hz", "W14" },
             { "xnt", "W17" },
             { "bAs", "W2" },
             { "ini", "W25" },
-            { "Hb", "W3" },
+            { "Hb-nb", "W3" },
             { "Xnm", "W9" },
             { "rdi", "X8" },
             { "mDAt", "Y1" },
@@ -514,6 +516,7 @@ namespace PP1
             { "ibA", "Y6" },
             { "zSSt", "Y8" },
             { "imi", "Z11" },
+            { "prt-xrw", "O3" },
         };
 
         private static readonly Dictionary<string, string> MdCFromGardinerSign = CreateReverseLookup(gardinerSignFromMdC);

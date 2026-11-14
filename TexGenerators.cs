@@ -34,8 +34,10 @@ namespace PP1
             {
                 string gardiner = Letters.MdCToGardinerSign(mdc);
                 string file = gardiner.Replace("AA", "J");
+                file = file.Replace("Aa", "J");
                 gardiner = Letters.CanonicaliseGardinerSign(gardiner);
-                
+                gardiner = Letters.CanonicaliseGardinerSign(gardiner);
+
                 float size = 0.5f;
                 if(sizeOverrides.ContainsKey(gardiner))
                 {
@@ -88,7 +90,99 @@ namespace PP1
             output.Text = outputText;
         }
 
-        Dictionary<string, float> sizeOverrides = new Dictionary<string, float>()
+        private void button2_Click(object sender, EventArgs e)
+        {
+            GenerateMultiliteralTable();
+        }
+
+        private void GenerateMultiliteralTable()
+        {
+            // get the whole list, and remove uniliterals.
+            IEnumerable<string> mdcs = Letters.gardinerSignFromMdC.Keys;
+            List<string> signsInMdC = new List<string>();
+            foreach(string key in mdcs)
+            {
+                if(key.Length <= 1)
+                {
+                    if(key.StartsWith("|") == false)
+                    {
+                        continue;
+                    }
+                }
+
+                signsInMdC.Add(key);
+            }
+
+            signsInMdC.Sort();
+
+            string top = "\\begin{center}\r\n\\begin{tabularx}{\\linewidth}{YYYY}\r\n"
+                + "Hieroglyph & MdC+ & Transliteration & Gardiner code\\\\\r\n\\hline\\\\\r\n";
+            string bottom = "\\end{tabularx}\r\n\\end{center}\r\n";
+            string outputText = top;
+            int count = 0;
+            int batchSize = (int)numericUpDown1.Value;
+            string prefix = textBox1.Text;
+            foreach (string mdc in signsInMdC)
+            {
+                string gardiner = Letters.MdCToGardinerSign(mdc);
+                string file = gardiner.Replace("AA", "J");
+                file = file.Replace("Aa", "J");
+                gardiner = Letters.CanonicaliseGardinerSign(gardiner);
+                gardiner = Letters.CanonicaliseGardinerSign(gardiner);
+
+                float size = 0.5f;
+                if (sizeOverrides.ContainsKey(gardiner))
+                {
+                    size = sizeOverrides[gardiner];
+                }
+                string sizeString = size.ToString("0.00");
+
+                bool pad = paddingLookup.ContainsKey(gardiner);
+                float padAmount = 0.0f;
+                if (pad)
+                {
+                    padAmount = paddingLookup[gardiner];
+                }
+
+                if (pad)
+                {
+                    outputText += "\\vspace{" + padAmount.ToString("0.00000") + "cm} ";
+                }
+
+                outputText += "\\includegraphics[width="
+                    + sizeString + "\\linewidth,height="
+                    + sizeString + "\\linewidth,keepaspectratio]{"
+                    + prefix + file + "}";
+
+                if (pad)
+                {
+                    outputText += " \\vspace{" + padAmount.ToString("0.00000") + "cm}";
+                }
+
+                outputText += " & ";
+                outputText += mdc;
+                outputText += " & ";
+                outputText += Letters.ConvertToTransliterationSymbols(mdc);
+                outputText += " & ";
+                outputText += gardiner;
+                outputText += " \\\\ ";
+                outputText += "\r\n";
+                ++count;
+                if (count >= batchSize)
+                {
+                    outputText += bottom;
+                    outputText += "\r\n\r\n";
+                    outputText += top;
+                    count = 0;
+                }
+            }
+
+            outputText += bottom;
+
+            output.Text = outputText;
+        }
+
+        private Dictionary<string, float> sizeOverrides = new Dictionary<string, float>()
         {
             { "Z4", 0.25f },
             { "Q3", 0.25f },
@@ -99,9 +193,22 @@ namespace PP1
             { "V33", 0.35f },
             { "O4", 0.35f },
             { "V1", 0.4f },
+            { "O49", 0.4f },
+            { "W24", 0.4f },
+            { "F21", 0.3f },
+            { "O45", 0.25f },
+            { "I6", 0.25f },
+            { "D28", 0.35f },
+            { "N41", 0.3f },
+            { "N5", 0.3f },
+            { "D2", 0.3f },
+            { "W22", 0.3f },
+            { "V37", 0.35f },
+            { "D27", 0.4f },
+            { "Z1", 0.2f },
         };
 
-        Dictionary<string, float> paddingLookup = new Dictionary<string, float>()
+        private Dictionary<string, float> paddingLookup = new Dictionary<string, float>()
         {
             { "D36", 0.3f },
             { "I9", 0.175f },
@@ -115,9 +222,12 @@ namespace PP1
             { "F32", 0.325f },
             { "O34", 0.325f },
             { "Aa15", 0.325f },
+            { "F18", 0.225f },
+            { "R4", 0.225f },
+            { "D4", 0.0625f },
         };
 
-        string[] mdcSemetic =
+        private string[] mdcSemetic =
         {
             "A",
             "i",
@@ -153,7 +263,7 @@ namespace PP1
             "D",
         };
 
-        string[] mdcAlphabetic =
+        private string[] mdcAlphabetic =
         {
             "A",
             "a",
